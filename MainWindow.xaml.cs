@@ -25,6 +25,11 @@ namespace Calculator_Shovkun_Samkova_PR_2._1
             InitializeComponent();
         }
 
+        float a, b;
+        int count;
+        bool znak = true;
+
+
         private void But0_Click(object sender, RoutedEventArgs e)
         {
             Text.Text = Text.Text + 0; 
@@ -47,6 +52,8 @@ namespace Calculator_Shovkun_Samkova_PR_2._1
 
         private void ButC_Click(object sender, RoutedEventArgs e)
         {
+            Text.Text = "";
+            Label.Content = "";
 
         }
 
@@ -72,6 +79,10 @@ namespace Calculator_Shovkun_Samkova_PR_2._1
 
         private void ButStrelra_Click(object sender, RoutedEventArgs e)
         {
+            int lenght = Text.Text.Length - 1;
+            string text = Text.Text;
+            Text.Clear();
+            for (int i = 0; i < lenght; i++) ;
 
         }
 
@@ -92,32 +103,90 @@ namespace Calculator_Shovkun_Samkova_PR_2._1
 
         private void ButPlusMinus_Click(object sender, RoutedEventArgs e)
         {
+            if (znak == true)
+            {
+                Text.Text = "-" + Text.Text;
+                znak = false;
+            }
+            else if (znak == false)
+            {
+                Text.Text = Text.Text.Replace("-", "");
+                znak = true;
 
+            }
         }
-
-        private void ButPalka_Click(object sender, RoutedEventArgs e)
+            private void ButPalka_Click(object sender, RoutedEventArgs e)
         {
+            a = float.Parse(Text.Text);
+            Text.Clear();
+            count = 4;
+            Label.Content = a.ToString() + "/";
+            znak = true;
 
         }
 
         private void ButUmnozhenie_Click(object sender, RoutedEventArgs e)
         {
+            a = float.Parse(Text.Text);
+            Text.Clear();
+            count = 3;
+            Label.Content = a.ToString() + "*";
+            znak = true;
 
         }
 
         private void ButMinus_Click(object sender, RoutedEventArgs e)
         {
+            a = float.Parse(Text.Text);
+            Text.Clear();
+            count = 2;
+            Label.Content = a.ToString() + "-";
+            znak = true;
 
         }
 
         private void ButPlus_Click(object sender, RoutedEventArgs e)
         {
+            a = float.Parse(Text.Text);
+            Text.Clear();
+            count = 1;
+            Label.Content = a.ToString() + "+";
+            znak = true;
 
         }
 
         private void ButRovno_Click(object sender, RoutedEventArgs e)
         {
+            calculate();
+            Label.Content = "";
+        }
+
+        private void calculate()
+        {
+            switch (count)
+            {
+                case 1:
+                    b = a + float.Parse(Text.Text);
+                    Text.Text = b.ToString();
+                    break;
+                case 2:
+                    b = a - float.Parse(Text.Text);
+                    Text.Text = b.ToString();
+                    break;
+                case 3:
+                    b = a * float.Parse(Text.Text);
+                    Text.Text = b.ToString();
+                    break;
+                case 4:
+                    b = a / float.Parse(Text.Text);
+                    Text.Text = b.ToString();
+                    break;
+
+                default:
+                    break;
+            }
 
         }
+
     }
 }
